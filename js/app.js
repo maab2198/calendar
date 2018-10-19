@@ -1,132 +1,114 @@
-// var calendar = {
-//     month: {
-//     "September":31,
-//     "October":30,
-//     "November":31,
-//     },
-//     current: "September",
-//     weekdays: [
-//         "Sunday",
-//         "Monday",
-//         "Tuesday",
-//         "Wednesday",
-//         "Thursday",
-//         "Friday",
-//         "Saturday"
-//     ]
-// }
-var date = new Date();
-var m = date.getMonth();
-var y = date.getFullYear();
+function Calendar () {
+    this.months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    this.today = new Date();
+    this.month = this.today.getMonth();
+    this.year = this.today.getFullYear();    
 
-var calendar = {
-    months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    firstYear: 2000,
-    lastYear: 2020,
-    today: new Date(),
-    month:m,
-    year:y,
-    loadMonths: function()
-    {
-        for(var i = 0; i < this.months.length; i++)
+    let firstYear = 2000;
+    let lastYear = 2020;
+    
+    this.loader = function() {
+        loadMonths.call(this);
+        loadYears.call(this);
+        loadDays.call(this);
+    };
+    
+    function loadMonths()
+    { 
+        for(let i = 0; i < this.months.length; i++)
         {
-            var doc = document.createElement("div");
-            doc.innerHTML = this.months[i];
+            let doc = document.createElement("div");
+            let context = this;
+            
+            doc.innerHTML = context.months[i];
             doc.classList.add("dropdown-item");
 
-            doc.onclick = (function () {
-                var selectedMonth = i;
-                return function ()
-                {
-                    this.month = selectedMonth;
-                    console.log(this.months[selectedMonth]);
-                    document.getElementById("curMonth").innerHTML = this.months[this.month];
-                    loadCalendarDays();
-                    return this.month;
-                }
-            })();
+            doc.onclick = function (){
+                loadNewMonth.call(context,i)
+            };
 
             document.getElementById("months").appendChild(doc);
         }
-    },
+    };
 
-    loadYears: function(){
+    function loadNewMonth(month) {
+        
+            this.month = month;
+           
 
-       for(let i = this.firstYear; i <= this.lastYear; i++)
+            document.getElementById("curMonth").innerHTML = this.months[this.month];
+            loadDays.call(this);
+        }
+    
+
+    function loadYears (){
+
+       for(let i = firstYear; i <= lastYear; i++)
        {
     
         let doc = document.createElement("div");
         doc.innerHTML = i;
         doc.classList.add("dropdown-item");
+        let context = this;
 
-        doc.onclick = (function(){
-            var selectedYear = i;
-            return function(){
-                this.year = selectedYear;
-                document.getElementById("curYear").innerHTML = this.year;
-                loadCalendarDays();
-                return this.year;
-                }
-        })();
+        doc.onclick = function(){
+            loadNewYear.call(context,i)
+        };
         document.getElementById("years").appendChild(doc);
-    }
-        
-    },
+        }
+    };
+
+    function loadNewYear(year) {
+        this.year= year;
+        document.getElementById("curYear").innerHTML = this.year;
+        loadDays.call(this);        
+
+    }    
 
 
-    loadDays: function()
+
+    function loadDays()
     {
         document.getElementById("calendarDays").innerHTML = "";
-
-        var tmpDate = new Date(this.year, this.month, 0);
-        var num = this.daysInMonth(this.month, this.year);
-        var dayofweek = tmpDate.getDay(); 
-
-          // create day prefixes
-          for(var i = 0; i <= dayofweek; i++)
+     
+        let daysInMonth = new Date(this.year, this.month+1, 0).getDate();
+        //day of week for a first day of the month
+        let firstDay = new Date(this.year, this.month, 0).getDay(); 
+      
+     
+        for(let i = 0; i <= firstDay && firstDay < 6; i++)
           {
-              var d = document.createElement("div");
-              d.classList.add("day");
-              d.classList.add("blank");
+              let day = document.createElement("div");
+              day.classList.add("day");
+              day.classList.add("blank");
               document.getElementById("calendarDays").appendChild(d);
           }
+        
 
-          {
-            var tmp = i + 1;
-            var d = document.createElement("div");
-            d.id = "calendarday_" + i;
-            d.className = "day";
-            d.innerHTML = tmp;
-            document.getElementById("calendarDays").appendChild(d);
+          for (let i = 0; i < daysInMonth; i++) {
+            let number = i + 1;
+            let day = document.createElement("div");
+            day.id = "day" + number;
+            day.className = "day";
+            day.innerHTML = number;
+            document.getElementById("calendarDays").appendChild(day);
         }
-
-        var clear = document.createElement("div");
-        clear.className = "clear";
-        document.getElementById("calendarDays").appendChild(clear);
-    },
-
-    loader:function() {
-        this.loadMonths();
-        this.loadYears();
-        this.loadDays();
-    },
+    };
 
 
-    daysInMonth:function(ye,mon)
-    {
-        var d = new Date(ye, mon+1, 0);
-        return d.getDate();
-    },
 };
 
 
-window.addEventListener('load', function () {
 
-    document.getElementById("curMonth").innerHTML = calendar.months[m];
-    document.getElementById("curYear").innerHTML = y;
+var calendar = new Calendar();
+
+
+
+window.addEventListener('load', function () {
+  
+    document.getElementById("curMonth").innerHTML = calendar.months[calendar.month];
+    document.getElementById("curYear").innerHTML = calendar.year;
     calendar.loader();
     
 
 });
-
-console.log(calendar.months[m])

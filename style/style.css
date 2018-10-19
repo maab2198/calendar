@@ -70,21 +70,43 @@
     float:right;
 }
 
-.calendar .calendar-dates .days .day
-{
-    float:left;
-    width: 10%;
-    margin: 1%;
-    padding: 1%;
+.calendar-dates {
+    display: flex;
+    flex-direction: column;
+  
+}
+
+.week {
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.days {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    border:1px;
+}
+
+.day{
+
+    width: 14%;
+    box-sizing: border-box;
+    height: 20px;
+  
     font-size:13pt;
     text-align:center;
     border-radius: 10px;
     border: solid 1px #ddd;
 }
 
-.calendar .calendar-dates .days .day.blank
-{
-    background-color: white;
+.day:nth-of-type(7n) {
+
+    border: 2px solid red;
+    margin-right: 1px;
+
 }
 
 .calendar .calendar-dates .days .day.selected
