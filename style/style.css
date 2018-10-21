@@ -108,10 +108,36 @@
     margin-right: 1px;
 
 }
-#info {
-    margin-top: 100px;
+.day__info {
+    border: 2px solid blue;
+ 
     width: 100%;
     height: 200px;
+}
+
+#text {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    height: 40px;
+}
+
+#output {
+
+    width: 100%;
+    
+}
+
+.hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+}
+
+.show {
+    display: block;
 }
 .calendar .calendar-dates .days .day.selected
 {
