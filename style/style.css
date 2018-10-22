@@ -1,4 +1,4 @@
-﻿.calendar
+﻿/* .calendar
 {
     background-color: white;
     padding: 20px;
@@ -76,65 +76,7 @@
   
 }
 
-.week {
-    display: flex;
-    justify-content: flex-start;
-    
-}
 
-.days {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    border:1px;
-}
-
-.day{
-
-    width: 14%;
-    box-sizing: border-box;
-    height: 20px;
-  
-    font-size:13pt;
-    text-align:center;
-    border-radius: 10px;
-    border: solid 1px #ddd;
-}
-
-.day:nth-of-type(7n) {
-
-    border: 2px solid red;
-    margin-right: 1px;
-
-}
-.day__info {
-    border: 2px solid blue;
- 
-    width: 100%;
-    height: 200px;
-}
-
-#text {
-    width: 80%;
-    margin: 0 auto;
-    display: block;
-    height: 40px;
-}
-
-#output {
-
-    width: 100%;
-    
-}
-
-.hidden {
-    position: absolute;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-}
 
 .show {
     display: block;
@@ -169,4 +111,232 @@
         position: relative;
         left: 0px;
     }
+} */
+html {
+    font-size: 12px;
+}
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+   
+}
+.wrapper {
+    display: flex;
+    height:100vh;
+    align-items: center
+
+}
+
+.day__info {
+    height: 80%;
+    
+    width: 40%;
+    background:#16bc80;
+    position: relative;
+    padding: 10px;
+    color:#fff;
+
+    
+    
+}
+
+.calendar {
+   width: 60%;
+    height: 80%;
+    padding: 30px;
+}
+
+.calendar__buttons {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding:5px;
+    font-family: "Roboto",sans-serif;
+    font-size: 2.5rem;
+    color:#16bc80;
+}
+
+.calendar__btn {
+    cursor: pointer;
+}
+.week {
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.days {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 400px;
+  
+}
+
+.day{
+
+    width: 14%;
+    box-sizing: border-box;
+    align-self: stretch;
+    padding: 5px;
+  
+    font-size:20px;
+    text-align:right;
+ 
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.day:active, .day:hover, day:focus {
+    background: #ddd;
+    border: 1px solid #ddd;
+
+} 
+
+.day:nth-of-type(7n) {
+
+    /* border: 2px solid red; */
+    margin-right: 1px;
+   
+}
+.day__date {
+    margin: 10px auto;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    
+    
+}
+.day__input {
+    display: block;
+    margin :20px 0;
+    width: -webkit-fill-available;
+    font-size: 1.5rem;
+    padding: 10px 10px;
+    border: 0;
+  }
+
+.day--today {
+    background:#16bc80;
+    border: 1px solid #16bc80;
+    color: white;
+
+}
+
+.day--week{
+    text-align: center;
+    cursor: auto;
+}
+
+.day--week:active, .day--week:hover {
+    background: #fff;
+}
+
+.day--event {
+    position: relative;
+
+}
+
+.day--event::after {
+    position: absolute;
+    content: "";
+    bottom: 10px;
+    left:10px;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    background: #16bc80;
+}
+
+
+.day--today::after {
+    background: #fff;
+}
+
+.day__text {
+    font-size: 1.5rem;
+    padding: 10px 10px;
+    margin:20px 0;
+    border: 1px dashed #fff;
+}
+
+.hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+}
+
+.btn {
+    display: block;
+    margin: 20px 0;
+    padding: 5px;
+    
+    text-align: center;
+    width:100%;
+    border: 1px dashed #fff;
+    font-family: "Roboto", sans-serif;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.btn:hover,.btn:active,.btn:focus {
+    background: #13a06d;
+    outline: 0;
+
+}
+
+
+.dropdown
+{
+    display: none;
+    position: absolute;
+
+    color: #fff;
+    text-align: center;
+   
+    padding-top: 5px;
+    /* padding-bottom: 5px;
+    padding-left: 30px;
+    padding-right: 30px; */
+    width: 100%;
+    box-sizing: border-box;
+    background: #16bc80;
+
+    height:100%;
+    left: 0px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dropdown__item
+{
+    cursor:pointer;
+    padding: 5px;
+    font-size: 2rem; 
+    opacity: .7;
+    transition: 0.3s ease-out;
+}
+
+
+.dropdown__item:hover
+{
+
+    opacity: 1;
+    background: #13a06d;
+   
+    
+ 
+}
+
+.years >.dropdown__item {
+    font-size: 1rem;
 }

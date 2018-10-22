@@ -6,32 +6,51 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="style/style.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-
+    <main class= "wrapper">
+        <article class="day__info">
+                <div id="months" class="months dropdown hidden"></div>
+                <div id="years" class="years dropdown hidden"></div>
+                    <div id="dayDate" class ="day__date hidden"></div>
+                    <div id="output" class="hidden">
+                        <p class="day__text"></p>
+                        <button id = "edit" class="btn">Edit</button>
+                    </div>
+                    <div  class = "day__form hidden" id="input">
+                        <label>
+                             <input id ="text" class="day__input" placeholder="Type something great">
+                        </label>
+                        <button id = "submit" class="btn">Save</button>
+                    </div>
+    
+        </article>
         <div class="calendar" id="calendar">
-                <div class="calendar-btn month-btn" onclick="$('#months').toggle('fast')">
-                    <span id="curMonth"></span>
-                    <div id="months" class="months dropdown"></div>
-                </div>
-            
-                <div class="calendar-btn year-btn" onclick="$('#years').toggle('fast')">
-                    <span id="curYear"></span>
-                    <div id="years" class="years dropdown"></div>
+                <div class="calendar__buttons">
+                    <div class="calendar__btn month-btn" id="monthBtn" >
+                        <span id="curMonth"></span>
+                        
+                    </div>
+                
+                    <div class="calendar__btn year-btn" id="yearBtn" >
+                        <span id="curYear"></span>
+                        
+                    </div>
                 </div>
             
             
             
                 <div class="calendar-dates">
                     <div class="week">
-                        <div class="day label">SUN</div>
-                        <div class="day label">MON</div>
-                        <div class="day label">TUE</div>
-                        <div class="day label">WED</div>
-                        <div class="day label">THUR</div>
-                        <div class="day label">FRI</div>
-                        <div class="day label">SAT</div>
+                        <div class="day day--week">SUN</div>
+                        <div class="day day--week">MON</div>
+                        <div class="day day--week">TUE</div>
+                        <div class="day day--week">WED</div>
+                        <div class="day day--week">THUR</div>
+                        <div class="day day--week">FRI</div>
+                        <div class="day day--week">SAT</div>
                     </div>
             
                     <div id="calendarDays" class="days">
@@ -39,21 +58,10 @@
 
                    
                 </div>
-                <article class="day__info hidden">
-                <div id="output">
-                    <p></p>
-                    <button id = "edit">Edit</button>
-                </div>
-                <div  class = "day__form" id="input">
-                    <label>
-                         <textarea id ="text" rows="20">  Type something</textarea>
-                    </label>
-                    <button id = "submit" >Save</button>
-                </div>
-
-                </article>
+                
                 
             </div>
+    </main>
 <script src ="js/app.js"></script>
 </body>
 </html>
