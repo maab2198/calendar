@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,61 +8,63 @@
     <title>Document</title>
     <link href="style/style.css" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
+
 <body>
-    <main class= "wrapper">
+    <main class="wrapper">
         <article class="day__info">
-                <div id="months" class="months dropdown hidden"></div>
-                <div id="years" class="years dropdown hidden"></div>
-                    <div id="dayDate" class ="day__date hidden"></div>
-                    <div id="output" class="hidden">
-                        <p class="day__text"></p>
-                        <button id = "edit" class="btn">Edit</button>
-                    </div>
-                    <div  class = "day__form hidden" id="input">
-                        <label>
-                             <input id ="text" class="day__input" placeholder="Type something great">
-                        </label>
-                        <button id = "submit" class="btn">Save</button>
-                    </div>
-    
+            <div id="months" class="months dropdown hidden"></div>
+            <div id="years" class="years dropdown hidden"></div>
+            <div id="dayDate" class="day__date hidden"></div>
+            <div id="output" class="hidden">
+                <p class="day__text"></p>
+                <button id="edit" class="btn">Edit</button>
+            </div>
+            <div class="day__form hidden" id="input">
+                <label>
+                    <input id="text" class="day__input" placeholder="Type something great">
+                </label>
+                <button id="submit" class="btn">Save</button>
+            </div>
+
         </article>
         <div class="calendar" id="calendar">
-                <div class="calendar__buttons">
-                    <div class="calendar__btn month-btn" id="monthBtn" >
-                        <span id="curMonth"></span>
-                        
-                    </div>
-                
-                    <div class="calendar__btn year-btn" id="yearBtn" >
-                        <span id="curYear"></span>
-                        
-                    </div>
-                </div>
-            
-            
-            
-                <div class="calendar-dates">
-                    <div class="week">
-                        <div class="day day--week">SUN</div>
-                        <div class="day day--week">MON</div>
-                        <div class="day day--week">TUE</div>
-                        <div class="day day--week">WED</div>
-                        <div class="day day--week">THUR</div>
-                        <div class="day day--week">FRI</div>
-                        <div class="day day--week">SAT</div>
-                    </div>
-            
-                    <div id="calendarDays" class="days">
-                    </div>
+            <div class="calendar__buttons">
+                <div class="calendar__btn month-btn" id="monthBtn">
+                    <span id="curMonth"></span>
 
-                   
                 </div>
-                
-                
+
+                <div class="calendar__btn year-btn" id="yearBtn">
+                    <span id="curYear"></span>
+
+                </div>
             </div>
+
+
+
+            <div class="calendar-dates">
+                <div class="week">
+                    <div class="day day--week">SUN</div>
+                    <div class="day day--week">MON</div>
+                    <div class="day day--week">TUE</div>
+                    <div class="day day--week">WED</div>
+                    <div class="day day--week">THUR</div>
+                    <div class="day day--week">FRI</div>
+                    <div class="day day--week">SAT</div>
+                </div>
+
+                <div id="calendarDays" class="days">
+                </div>
+
+
+            </div>
+
+
+        </div>
     </main>
-<script src ="js/app.js"></script>
+    <script src="js/app.js"></script>
 </body>
+
 </html>

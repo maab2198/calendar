@@ -54,10 +54,10 @@ function Calendar() {
 
 
             document.getElementById("months").appendChild(doc);
-            document.getElementById("curMonth").onclick = function (){
+            document.getElementById("curMonth").onclick = function () {
                 document.getElementById("years").classList.add("hidden")
                 document.getElementById("months").classList.toggle("hidden");
-                
+
             };
 
 
@@ -65,7 +65,7 @@ function Calendar() {
     };
 
     function loadNewMonth(month) {
-        
+
         this.month = month;
         document.getElementById("curMonth").innerHTML = this.months[this.month];
         loadDays.call(this);
@@ -81,15 +81,15 @@ function Calendar() {
             doc.innerHTML = i;
             doc.classList.add("dropdown__item");
 
-            doc.onclick = function() {
+            doc.onclick = function () {
                 loadNewYear.call(context, i)
             };
             document.getElementById("years").appendChild(doc);
 
-            document.getElementById("curYear").onclick = function (){
+            document.getElementById("curYear").onclick = function () {
                 document.getElementById("months").classList.add("hidden");
                 document.getElementById("years").classList.toggle("hidden");
-                
+
             };
 
         }
@@ -132,8 +132,8 @@ function Calendar() {
         let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
         //day of week for a first day of the month
         let firstDay = new Date(this.year, this.month, 0).getDay();
-        let today = (this.today.getFullYear())*10000 + this.today.getDate() + (this.today.getMonth())*100;
-        
+        let today = (this.today.getFullYear()) * 10000 + this.today.getDate() + (this.today.getMonth()) * 100;
+
 
         //empty blocks
         for (let i = 0; i <= firstDay && firstDay < 6; i++) {
@@ -155,8 +155,8 @@ function Calendar() {
             if (this.eventList[id]) {
                 day.classList.add("day--event");
             }
-           
-            if (id==today) {
+
+            if (id == today) {
                 day.classList.add("day--today");
             }
             day.onclick = function () {
@@ -171,16 +171,15 @@ function Calendar() {
 
     function showInfo(id, day) {
         let context = this;
-        let input = document.getElementById("input");
+        var input = document.getElementById("input");
         let output = document.getElementById("output");
 
         let edit = document.getElementById("edit");
         let save = document.getElementById("submit");
 
         document.querySelector(".day__info").classList.remove("hidden");
-        input.classList.remove("hidden");
-        output.classList.add("hidden");
-        document.getElementById("dayDate").innerText = id.substring(0, 4) + " "  + context.months[Number(id.substring(4, 6))]+ " " + id.substring(6, 8);
+
+        document.getElementById("dayDate").innerText = id.substring(0, 4) + " " + context.months[Number(id.substring(4, 6))] + " " + id.substring(6, 8);
         document.getElementById("dayDate").classList.remove("hidden");
 
         if (this.eventList[id]) {
@@ -192,20 +191,28 @@ function Calendar() {
             output.firstElementChild.innerHTML = text.outerHTML;
 
             edit.onclick = function () {
-                input.classList.remove("hidden");
-                addInfo.call(context, id)
+
+                console.log(document.getElementById("input").classList)
+                document.getElementById("input").classList.remove("hidden");
+                save.onclick = function () {
+                    addInfo.call(context, id, day)
+                }
             };
         } else {
+            input.classList.remove("hidden");
+
+            output.classList.add("hidden");
             save.onclick = function () {
-                addInfo.call(context, id,day);
+                addInfo.call(context, id, day);
                 day.classList.add("day--event");
 
             };
         }
     }
 
-    function addInfo(id,d) {
+    function addInfo(id, d) {
         let context = this;
+
         let year = Number(id.substring(0, 4));
         let month = Number(id.substring(4, 6));
         let day = Number(id.substring(6, 8));
@@ -214,12 +221,13 @@ function Calendar() {
             "Title": document.getElementById("text").value
         }
         document.getElementById("text").value = "";
+        // console.log(context)
         let get = new Event(event)
         this.eventList[get.id] = get;
 
         //Set localStorage
         localStorage.setItem("EventList", JSON.stringify(this.eventList));
-        showInfo.call(context,id, d);
+        showInfo.call(context, id, d);
 
     }
 
@@ -254,8 +262,7 @@ window.addEventListener('load', function () {
     document.getElementById("curYear").innerHTML = calendar.year;
     calendar.loader();
     //Clean Storage
-    localStorage.clear();
+    // localStorage.clear();
 
 
 });
-
